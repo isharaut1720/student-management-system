@@ -1,8 +1,12 @@
 let editingId = null;
 
+// Railway backend URL
+const BASE_URL = "https://student-management-system-production-a469.up.railway.app";
+
+
 // Load students
 function loadStudents() {
-    fetch("http://localhost:8080/students")
+    fetch(BASE_URL + "/students")
     .then(res => res.json())
     .then(data => {
         let table = "";
@@ -42,7 +46,7 @@ function addStudent() {
 
     // UPDATE
     if (editingId !== null) {
-        fetch(`http://localhost:8080/students/${editingId}`, {
+        fetch(`${BASE_URL}/students/${editingId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(student)
@@ -55,7 +59,7 @@ function addStudent() {
     } 
     // ADD
     else {
-        fetch("http://localhost:8080/students", {
+        fetch(BASE_URL + "/students", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(student)
@@ -76,7 +80,6 @@ function editStudent(id, name, email, course) {
     document.getElementById("email").value = email;
     document.getElementById("course").value = course;
 
-    // Change button text
     document.getElementById("submitBtn").innerText = "Update Student";
 }
 
@@ -85,7 +88,7 @@ function editStudent(id, name, email, course) {
 function deleteStudent(id) {
     if (!confirm("Are you sure?")) return;
 
-    fetch("http://localhost:8080/students/" + id, {
+    fetch(BASE_URL + "/students/" + id, {
         method: "DELETE"
     }).then(() => {
         showMessage("Student deleted!");

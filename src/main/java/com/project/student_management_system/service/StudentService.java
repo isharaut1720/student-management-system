@@ -30,15 +30,15 @@ public class StudentService {
     }
 
     public Student updateStudent(Long id, Student newStudent) {
-        Student existing = repository.findById(id).orElse(null);
 
-        if (existing != null) {
+        return repository.findById(id).map(existing -> {
+
             existing.setName(newStudent.getName());
             existing.setEmail(newStudent.getEmail());
             existing.setCourse(newStudent.getCourse());
-            return repository.save(existing);
-        }
 
-        return null;
+            return repository.save(existing);
+
+        }).orElseThrow(() -> new RuntimeException("Student not found with id: " + id));
     }
 }
