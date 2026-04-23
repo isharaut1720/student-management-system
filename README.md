@@ -17,8 +17,5 @@ https://student-management-system-production-a469.up.railway.app/
 ## 🚀 Deployment
 Deployed on Railway
 
-## 📸 Screenshots
-(Add screenshots here)
-
 ## 👩‍💻 Author
 Isha Raut
